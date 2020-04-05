@@ -83,3 +83,22 @@ func DetectCycleTwoPointers(l *List) bool {
 	}
 	return false
 }
+
+// Just like DetectCyleTwoPointers, but returns cycle start
+func CycleStart(l *List) *ListNode {
+	first := l.head
+	second := l.head
+	if first == nil {
+		return nil
+	}
+	// there is only one self-looped node
+
+	for first != nil && second != nil && second.next != nil {
+		first = first.next
+		second = second.next.next
+		if first == second {
+			return first
+		}
+	}
+	return nil
+}
